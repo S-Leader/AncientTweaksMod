@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "ancienttweaks:grand_gelatin"
+  },
+  "base": {
+    "item": "ancienttweaks:baroclaw"
+  },
+  "result": {
+    "id": "ancienttweaks:the_absorber"
+  },
+  "template": {
+    "item": "ancienttweaks:giant_tortoise_shell"
+  }
+}

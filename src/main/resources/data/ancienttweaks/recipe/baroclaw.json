@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "crc",
+    "ccc"
+  ],
+  "key": {
+    "c": {
+      "item": "minecraft:echo_shard"
+    },
+    "r": {
+      "item": "ancienttweaks:craw_carapace"
+    }
+  },
+  "result": {
+    "id": "ancienttweaks:baroclaw"
+  }
+}

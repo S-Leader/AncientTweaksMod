@@ -1,0 +1,16 @@
+{
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 0
+      },
+      "model": "ancienttweaks:item/giant_shell_universe"
+    },
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "ancienttweaks:item/giant_shell_blocking"
+    }
+  ]
+}
