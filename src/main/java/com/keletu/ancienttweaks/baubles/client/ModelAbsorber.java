@@ -42,9 +42,6 @@ public class ModelAbsorber extends EntityModel<Player> {
         this.backpack.render(poseStack, vertexConsumer, packedLight, packedOverlay, alpha);
     }
 
-    /**
-     * 让背包跟随玩家身体旋转。
-     */
     public void setupAngles(PlayerModel<?> playerModel) {
         copyProperties(playerModel.body, this.backpack);
     }
@@ -59,9 +56,6 @@ public class ModelAbsorber extends EntityModel<Player> {
         target.z = source.z;
     }
 
-    /**
-     * 对应旧版 render 里的特殊位移。
-     */
     public void render(Player player, PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float alpha) {
         poseStack.pushPose();
 

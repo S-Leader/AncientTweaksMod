@@ -1,6 +1,12 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "ancienttweaks:item/life_jelly"
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "ancienttweaks:item/life_jelly_item"
+  },
+  "perspectives": {
+    "head": {
+      "parent": "ancienttweaks:item/life_jelly_head"
+    }
   }
 }

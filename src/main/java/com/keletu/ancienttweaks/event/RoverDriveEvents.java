@@ -19,16 +19,11 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 
-import java.util.UUID;
-
 @EventBusSubscriber(modid = AncientTweaks.MODID)
 public final class RoverDriveEvents {
 
     private static final String TAG_COMPOUND = AncientTweaks.MODID;
     private static final String TAG_ROVER_DRIVE_COOLDOWN = "roverDriveCooldown";
-
-    private static final UUID BUBBLE_ARMOR_UUID =
-            UUID.fromString("15faf191-bf21-4654-b359-ABCDEF100011");
 
     private RoverDriveEvents() {
     }

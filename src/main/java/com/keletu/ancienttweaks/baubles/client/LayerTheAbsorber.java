@@ -34,13 +34,6 @@ public class LayerTheAbsorber extends RenderLayer<AbstractClientPlayer, PlayerMo
 
         poseStack.pushPose();
 
-        /*
-         * 旧版：
-         * model.setModelAttributes(renderer.getMainModel());
-         * model.setupAngles(renderer.getMainModel());
-         *
-         * 新版这里让 ModelAbsorber 跟随玩家 body 姿态。
-         */
         this.model.setupAngles(this.getParentModel());
 
         VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));

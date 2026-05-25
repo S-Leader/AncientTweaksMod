@@ -17,10 +17,10 @@ public final class AncientTweaksClientRenderEvents {
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-       //event.registerLayerDefinition(
-       //        ModelJelly.LAYER_LOCATION,
-       //        ModelJelly::createBodyLayer
-       //);
+        //event.registerLayerDefinition(
+        //        ModelJelly.LAYER_LOCATION,
+        //        ModelJelly::createBodyLayer
+        //);
 
         event.registerLayerDefinition(
                 ModelBubbleShield.LAYER_LOCATION,
@@ -60,6 +60,7 @@ public final class AncientTweaksClientRenderEvents {
 
             renderer.addLayer(new LayerTheAbsorber(renderer, absorberModel));
 
+            renderer.addLayer(new LayerSlimeHead(renderer));
             renderer.addLayer(new LayerShieldBack(renderer));
             renderer.addLayer(new LayerCrabGlove(renderer));
         }

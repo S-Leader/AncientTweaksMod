@@ -1,6 +1,12 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "ancienttweaks:item/cleansing_jelly"
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "ancienttweaks:item/cleansing_jelly_item"
+  },
+  "perspectives": {
+    "head": {
+      "parent": "ancienttweaks:item/cleansing_jelly_head"
+    }
   }
 }
