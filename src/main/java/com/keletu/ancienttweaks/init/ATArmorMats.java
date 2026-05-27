@@ -23,5 +23,5 @@ public class ATArmorMats {
         map.put(ArmorItem.Type.LEGGINGS, 6);
         map.put(ArmorItem.Type.CHESTPLATE, 8);
         map.put(ArmorItem.Type.HELMET, 3);
-    }), 9, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(Tags.Items.INGOTS_GOLD), List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "tanooki"))), 20, 0.0F));
+    }), 9, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(Tags.Items.INGOTS_GOLD), List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "tanooki"))), 0.0F, 0.0F));
 }
