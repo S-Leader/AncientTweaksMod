@@ -63,7 +63,6 @@ public final class AncientTweaksClientRenderEvents {
 
         if (isJumpKeyDown && !wasJumpKeyDown) {
             if (data.isPoweredUp && !mc.player.onGround()) {
-                mc.player.jumpFromGround();
                 PacketDistributor.sendToServer(new TanookiJumpPayload());
             }
         }

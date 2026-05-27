@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.keletu.ancienttweaks.mixins",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "ancienttweaks.refmap.json",
+  "mixins": [
+    "MixinDamageCalculations"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

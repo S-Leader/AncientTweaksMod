@@ -10,8 +10,10 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record TanookiJumpPayload() implements CustomPacketPayload {
@@ -29,8 +31,8 @@ public record TanookiJumpPayload() implements CustomPacketPayload {
             if (player == null) return;
 
             TanookiData data = player.getData(ATAttachments.DATA_TYPE);
-            if (data.isPoweredUp && !player.onGround()) {
-                player.jumpFromGround();
+            if (data.isPoweredUp && !player.onGround() && player.getFoodData().getFoodLevel() > 6) {
+                PacketDistributor.sendToPlayer((ServerPlayer) player, new TanookiJumpClient());
                 player.causeFoodExhaustion(2.0F);
                 player.fallDistance = 0.0F;
                 player.level().playSound(null, player.blockPosition(), ATSounds.SWEEP.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
