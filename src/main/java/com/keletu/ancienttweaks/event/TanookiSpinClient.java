@@ -1,14 +1,15 @@
 package com.keletu.ancienttweaks.event;
 
 import com.keletu.ancienttweaks.AncientTweaks;
+import com.keletu.ancienttweaks.init.ATAttachments;
 import com.keletu.ancienttweaks.packet.TanookiRolling;
+import com.keletu.ancienttweaks.packet.TanookiStatuePayload;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
 
@@ -17,36 +18,47 @@ public class TanookiSpinClient {
 
     public static final KeyMapping SPIN_KEY = new KeyMapping("key.ancienttweaks.spin", GLFW.GLFW_KEY_V, "key.categories.ancienttweaks");
 
-    private static int spinTicks = 0; // 记录旋转剩余时间
-    private static final int SPIN_DURATION = 8; // 旋转总耗时(tick)，8tick大约0.4秒，表现为快速横扫
-
-    @SubscribeEvent
-    public static void onKeyInput(InputEvent.Key event) {
-        if (SPIN_KEY.consumeClick()) {
-            Minecraft mc = Minecraft.getInstance();
-            if (mc.player != null && spinTicks == 0 && mc.player.getVehicle() == null && mc.player.getDeltaMovement().horizontalDistance() <= 0.01F && TanookiEvents.hasArmorEquipped(mc.player)) { // 防止连续按键导致不间断旋转
-
-                PacketDistributor.sendToServer(new TanookiRolling());
-
-                // 2. 开启客户端本地的旋转动画
-                spinTicks = SPIN_DURATION;
-            }
-        }
-    }
-
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
-        if (spinTicks > 0) {
-            Minecraft mc = Minecraft.getInstance();
-            if (mc.player != null && mc.player.getVehicle() == null && mc.player.getDeltaMovement().horizontalDistance() <= 0.01F && TanookiEvents.hasArmorEquipped(mc.player)) {
-                // 每次 tick 旋转角度 (360度 / 总耗时)
-                float rotationPerTick = 300.0F;
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player == null || mc.player.getVehicle() != null) return;
 
-                // turn() 会同时旋转视角和身体
-                mc.player.turn(rotationPerTick, 0);
+        var data = mc.player.getData(ATAttachments.DATA_TYPE);
 
-                spinTicks--;
+        boolean isKeyDown = SPIN_KEY.isDown();
+        boolean inAir = !mc.player.onGround();
+
+        int wasStatueThisTick = data.statueTime;
+
+        if (isKeyDown && inAir && data.statueTime == 0) {
+            data.statueTime = 100;
+        } else if (data.statueTime == 0 && !inAir) {
+            PacketDistributor.sendToServer(new TanookiStatuePayload(false));
+        }
+
+        if (data.statueTime > 0) {
+            data.statueTime--;
+            PacketDistributor.sendToServer(new TanookiStatuePayload(true));
+            mc.player.setDeltaMovement(0, -1.5, 0);
+        }
+
+        while (SPIN_KEY.consumeClick()) {
+            if (wasStatueThisTick > 0) {
+                continue;
             }
+
+            if (!inAir && data.spinTicks == 0) {
+                boolean isStationary = mc.player.getDeltaMovement().horizontalDistanceSqr() < 0.001;
+                if (isStationary) {
+                    data.spinTicks = 8;
+                    PacketDistributor.sendToServer(new TanookiRolling());
+                }
+            }
+        }
+
+        if (data.spinTicks > 0) {
+            mc.player.turn(300, 0);
+            data.spinTicks--;
         }
     }
 }

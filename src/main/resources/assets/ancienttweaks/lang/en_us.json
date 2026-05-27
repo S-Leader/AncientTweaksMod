@@ -56,5 +56,13 @@
   "effect.ancienttweaks.crumbling": "Armor Crumbling",
   "effect.ancienttweaks.cleansing": "Cleansing",
   "item.waffles_iron.tooltip": "'It's Waffle Time!'",
-  "creativetab.ancienttweaks": "Ancient Curios"
+  "creativetab.ancienttweaks": "Ancient Curios",
+  "tooltip.ancienttweaks.tanooki_armor1": "- You can jump-in-air infinitely",
+  "tooltip.ancienttweaks.tanooki_armor2": "WHEN you running over 3s.",
+  "tooltip.ancienttweaks.tanooki_armor3": "- You can smash down when taping ability key",
+  "tooltip.ancienttweaks.tanooki_armor4": "smash down will ignore falling damage.",
+  "tooltip.ancienttweaks.tanooki_armor5": "- You can use spin attack when using",
+  "tooltip.ancienttweaks.tanooki_armor6": "ability key on ground.",
+  "key.ancienttweaks.spin": "Armor Ability",
+  "key.categories.ancienttweaks": "Ancient Tweaks"
 }

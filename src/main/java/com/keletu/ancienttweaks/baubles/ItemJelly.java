@@ -23,7 +23,6 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.UUID;
 
 public class ItemJelly extends Item implements ICurioItem {
 

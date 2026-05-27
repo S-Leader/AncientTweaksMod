@@ -34,7 +34,6 @@ public class ModelAbsorber extends EntityModel<Player> {
 
     @Override
     public void setupAnim(Player player, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        // 动画由 Layer 里复制 PlayerModel body 姿态处理
     }
 
     @Override
