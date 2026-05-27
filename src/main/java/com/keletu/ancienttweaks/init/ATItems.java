@@ -2,6 +2,10 @@ package com.keletu.ancienttweaks.init;
 
 import com.keletu.ancienttweaks.AncientTweaks;
 import com.keletu.ancienttweaks.baubles.*;
+import static com.keletu.ancienttweaks.init.ATArmorMats.TANOOKI;
+import com.keletu.ancienttweaks.item.TanookiArmor;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -29,4 +33,10 @@ public class ATItems {
     public static final DeferredItem<Item> roverDrive = ITEMS.register("rover_drive", () -> new ItemRoverDrive(new Item.Properties()));
 
     public static final DeferredItem<Item> theSponge = ITEMS.register("the_sponge", () -> new ItemTheSponge(new Item.Properties()));
+
+    public static final DeferredItem<Item> tanooki_hood = ITEMS.register("tanooki_hood", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> tanooki_chest = ITEMS.register("tanooki_chest", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> tanooki_legs = ITEMS.register("tanooki_legs", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> tanooki_shoes = ITEMS.register("tanooki_shoes", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
 }

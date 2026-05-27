@@ -2,7 +2,7 @@ package com.keletu.ancienttweaks.init;
 
 import com.keletu.ancienttweaks.AncientTweaks;
 import com.keletu.ancienttweaks.cap.HurtCounter;
-import net.minecraft.core.registries.Registries;
+import com.keletu.ancienttweaks.cap.TanookiData;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -20,4 +20,8 @@ public class ATAttachments {
                             .copyOnDeath()
                             .build()
             );
+
+    public static final Supplier<AttachmentType<TanookiData>> DATA_TYPE = ATTACHMENT_TYPES.register("tanooki_data",
+            () -> AttachmentType.builder(() -> new TanookiData()).build()
+    );
 }
