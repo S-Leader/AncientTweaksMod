@@ -1,6 +1,7 @@
 package com.keletu.ancienttweaks;
 
 import com.keletu.ancienttweaks.event.ClientEvents;
+import com.keletu.ancienttweaks.event.TanookiSpinClient;
 import com.keletu.ancienttweaks.init.*;
 import com.keletu.ancienttweaks.packet.ModNetwork;
 import com.keletu.ancienttweaks.util.ATDataGen;
@@ -11,6 +12,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import org.slf4j.Logger;
 
 @Mod(AncientTweaks.MODID)
@@ -23,6 +25,7 @@ public class AncientTweaks {
         ATItems.ITEMS.register(modEventBus);
         ATEffects.EFFECTS.register(modEventBus);
         ATLoots.LOOTS.register(modEventBus);
+        ATSounds.SOUNDS.register(modEventBus);
         ATTabs.TABS.register(modEventBus);
         ATAttachments.ATTACHMENT_TYPES.register(modEventBus);
 
@@ -34,6 +37,7 @@ public class AncientTweaks {
         if (FMLEnvironment.dist == Dist.CLIENT) {
             modEventBus.addListener(ClientEvents::onClientSetup);
             modEventBus.addListener(ClientEvents::registerLayer);
+            modEventBus.addListener(RegisterKeyMappingsEvent.class, event -> event.register(TanookiSpinClient.SPIN_KEY));
         }
     }
 }

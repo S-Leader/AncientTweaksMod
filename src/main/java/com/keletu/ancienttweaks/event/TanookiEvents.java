@@ -15,9 +15,8 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 @EventBusSubscriber(modid = AncientTweaks.MODID)
 public class TanookiEvents {
 
-    // 判断玩家是否穿戴了装备（此处以胸甲为例，你可以改成检查全套）
-    private static boolean hasArmorEquipped(Player player) {
-        return player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof TanookiArmor;
+    public static boolean hasArmorEquipped(Player player) {
+        return player.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof TanookiArmor && player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof TanookiArmor && player.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof TanookiArmor && player.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof TanookiArmor;
     }
 
     // 处理疾跑蓄力逻辑（服务端和客户端同时运行，避免视角卡顿）
@@ -49,6 +48,6 @@ public class TanookiEvents {
         }
 
         if (data.isPoweredUp && player.tickCount % 5 == 0)
-            player.level().playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_HARP.value(), SoundSource.PLAYERS, 0.3F , 1.0F);
+            player.level().playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_HARP.value(), SoundSource.PLAYERS, 0.3F, 1.0F);
     }
 }

@@ -12,5 +12,6 @@ public class ModNetwork {
 
         registrar.playToClient(PacketBubbleShield.TYPE, PacketBubbleShield.STREAM_CODEC, PacketBubbleShield::handle);
         registrar.playToServer(TanookiJumpPayload.TYPE, TanookiJumpPayload.CODEC, TanookiJumpPayload::handle);
+        registrar.playToServer(TanookiRolling.TYPE, TanookiRolling.CODEC, TanookiRolling::handle);
     }
 }

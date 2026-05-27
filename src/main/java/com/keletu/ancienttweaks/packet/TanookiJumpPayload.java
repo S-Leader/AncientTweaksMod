@@ -33,14 +33,7 @@ public record TanookiJumpPayload() implements CustomPacketPayload {
                 player.jumpFromGround(); // 服务端起跳：增加跳跃统计、消耗饥饿度、触发声音
                 player.fallDistance = 0.0F; // 重置跌落伤害
 
-                ((ServerLevel) player.level()).sendParticles(ParticleTypes.CLOUD,  // 或是 ParticleTypes.POOF
-                        player.getX(), player.getY() + 0.2,  // 在脚底偏上的位置生成
-                        player.getZ(), 8,                    // 粒子数量 (8-10个效果比较饱满)
-                        0.25,                 // X向随机向外散开的范围
-                        0.1,                  // Y向散开范围
-                        0.25,                 // Z向散开范围
-                        0.02                  // 飘散速度 (越小扩散得越自然)
-                );
+                ((ServerLevel) player.level()).sendParticles(ParticleTypes.CLOUD, player.getX(), player.getY() + 0.2, player.getZ(), 8, 0.25, 0.1, 0.25, 0.02);
             }
         });
     }
