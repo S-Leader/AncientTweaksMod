@@ -32,7 +32,7 @@ public record TanookiJumpPayload() implements CustomPacketPayload {
 
             TanookiData data = player.getData(ATAttachments.DATA_TYPE);
             if (data.isPoweredUp && !player.onGround() && player.getFoodData().getFoodLevel() > 6) {
-                PacketDistributor.sendToPlayer((ServerPlayer) player, new TanookiJumpClient());
+                PacketDistributor.sendToPlayer((ServerPlayer) player, new TanookiJumpClient(1));
                 player.causeFoodExhaustion(2.0F);
                 player.fallDistance = 0.0F;
                 player.level().playSound(null, player.blockPosition(), ATSounds.SWEEP.value(), SoundSource.PLAYERS, 1.0F, 1.0F);

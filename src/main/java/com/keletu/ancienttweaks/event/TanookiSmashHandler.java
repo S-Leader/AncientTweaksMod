@@ -2,8 +2,10 @@ package com.keletu.ancienttweaks.event;
 
 import com.keletu.ancienttweaks.AncientTweaks;
 import com.keletu.ancienttweaks.init.ATAttachments;
+import com.keletu.ancienttweaks.packet.TanookiJumpClient;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -15,6 +17,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 @EventBusSubscriber(modid = AncientTweaks.MODID)
 public class TanookiSmashHandler {
@@ -37,7 +40,6 @@ public class TanookiSmashHandler {
 
                 event.setDamageMultiplier(0.0F);
                 float fallDistance = event.getDistance();
-                player.setDeltaMovement(0, -1.5, 0);
 
                 if (fallDistance > 2.0F && player.level() instanceof ServerLevel serverLevel) {
                     float smashDamage = 5.0F + (fallDistance * 1.5F);
@@ -52,6 +54,7 @@ public class TanookiSmashHandler {
                         target.knockback(1.0D, -pushX, -pushZ);
                     }
 
+                    PacketDistributor.sendToPlayer((ServerPlayer) player, new TanookiJumpClient(2));
                     serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.MACE_SMASH_GROUND_HEAVY, SoundSource.PLAYERS, 1.0F, 0.7F);
                     serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1.0F, 0.7F);
 

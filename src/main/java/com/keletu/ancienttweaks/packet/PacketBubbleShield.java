@@ -11,15 +11,9 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record PacketBubbleShield(int hearts) implements CustomPacketPayload {
 
-    public static final Type<PacketBubbleShield> TYPE = new Type<>(
-            ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "bubble_shield")
-    );
+    public static final Type<PacketBubbleShield> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "bubble_shield"));
 
-    public static final StreamCodec<ByteBuf, PacketBubbleShield> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.VAR_INT,
-            PacketBubbleShield::hearts,
-            PacketBubbleShield::new
-    );
+    public static final StreamCodec<ByteBuf, PacketBubbleShield> CODEC = StreamCodec.composite(ByteBufCodecs.VAR_INT, PacketBubbleShield::hearts, PacketBubbleShield::new);
 
     @Override
     public Type<? extends CustomPacketPayload> type() {
