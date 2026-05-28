@@ -2,6 +2,7 @@ package com.keletu.ancienttweaks.packet;
 
 import com.keletu.ancienttweaks.AncientTweaks;
 import com.keletu.ancienttweaks.cap.TanookiData;
+import com.keletu.ancienttweaks.event.TanookiEvents;
 import com.keletu.ancienttweaks.init.ATAttachments;
 import com.keletu.ancienttweaks.init.ATSounds;
 import io.netty.buffer.ByteBuf;
@@ -31,7 +32,7 @@ public record TanookiJumpPayload() implements CustomPacketPayload {
             if (player == null) return;
 
             TanookiData data = player.getData(ATAttachments.DATA_TYPE);
-            if (data.isPoweredUp && !player.onGround() && player.getFoodData().getFoodLevel() > 6) {
+            if (data.isPoweredUp && !player.onGround() && player.getFoodData().getFoodLevel() > 6 && TanookiEvents.hasArmorEquipped(player)) {
                 PacketDistributor.sendToPlayer((ServerPlayer) player, new TanookiJumpClient(1));
                 player.causeFoodExhaustion(2.0F);
                 player.fallDistance = 0.0F;
