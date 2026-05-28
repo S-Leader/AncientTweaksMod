@@ -36,7 +36,6 @@ public class AncientTweaks {
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             modEventBus.addListener(ClientEvents::onClientSetup);
-            modEventBus.addListener(ClientEvents::registerLayer);
             modEventBus.addListener(RegisterKeyMappingsEvent.class, event -> event.register(TanookiSpinClient.SPIN_KEY));
         }
     }
