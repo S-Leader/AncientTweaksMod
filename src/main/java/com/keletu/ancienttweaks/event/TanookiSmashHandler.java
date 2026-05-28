@@ -8,8 +8,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
@@ -32,7 +30,7 @@ public class TanookiSmashHandler {
 
     @SubscribeEvent
     public static void onPlayerFall(LivingFallEvent event) {
-        if (event.getEntity() instanceof Player player && !player.level().isClientSide) {
+        if (event.getEntity() instanceof Player player && !player.level().isClientSide && TanookiEvents.hasArmorEquipped(player)) {
             if (player.getData(ATAttachments.DATA_TYPE).isStatue) {
 
                 event.setDamageMultiplier(0.0F);
