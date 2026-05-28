@@ -11,17 +11,9 @@ import java.util.function.Supplier;
 
 public class ATAttachments {
 
-    public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES =
-            DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, AncientTweaks.MODID);
+    public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, AncientTweaks.MODID);
 
-    public static final Supplier<AttachmentType<HurtCounter>> HURT_COUNTER =
-            ATTACHMENT_TYPES.register("hurt_counter", () ->
-                    AttachmentType.serializable(HurtCounter::new)
-                            .copyOnDeath()
-                            .build()
-            );
+    public static final Supplier<AttachmentType<HurtCounter>> HURT_COUNTER = ATTACHMENT_TYPES.register("hurt_counter", () -> AttachmentType.serializable(HurtCounter::new).copyOnDeath().build());
 
-    public static final Supplier<AttachmentType<TanookiData>> DATA_TYPE = ATTACHMENT_TYPES.register("tanooki_data",
-            () -> AttachmentType.builder(() -> new TanookiData()).build()
-    );
+    public static final Supplier<AttachmentType<TanookiData>> DATA_TYPE = ATTACHMENT_TYPES.register("tanooki_data", () -> AttachmentType.builder(TanookiData::new).build());
 }

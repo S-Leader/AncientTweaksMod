@@ -39,7 +39,7 @@ public record TanookiRolling() implements CustomPacketPayload {
             boolean hitAnything = false;
 
             for (LivingEntity target : targets) {
-                target.hurt(player.damageSources().playerAttack(player), 6.0F);
+                target.hurt(player.damageSources().playerAttack(player), 10.0F);
 
                 target.knockback(0.5D, player.getX() - target.getX(), player.getZ() - target.getZ());
                 hitAnything = true;

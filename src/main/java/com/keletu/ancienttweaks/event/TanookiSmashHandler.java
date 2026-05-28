@@ -26,9 +26,6 @@ public class TanookiSmashHandler {
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
         if (!player.level().isClientSide && player.getData(ATAttachments.DATA_TYPE).isStatue) {
-            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 2, 255, false, false, false));
-            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2, 4, false, false, false));
-
             player.hurtMarked = true;
         }
     }

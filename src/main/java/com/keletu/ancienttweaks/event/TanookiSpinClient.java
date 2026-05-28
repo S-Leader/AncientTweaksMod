@@ -4,6 +4,7 @@ import com.keletu.ancienttweaks.AncientTweaks;
 import com.keletu.ancienttweaks.init.ATAttachments;
 import com.keletu.ancienttweaks.packet.TanookiRolling;
 import com.keletu.ancienttweaks.packet.TanookiStatuePayload;
+import com.keletu.ancienttweaks.packet.TanookiStatueTimeServerEvent;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -41,6 +42,8 @@ public class TanookiSpinClient {
             PacketDistributor.sendToServer(new TanookiStatuePayload(true));
             mc.player.setDeltaMovement(0, -1.5, 0);
         }
+
+        PacketDistributor.sendToServer(new TanookiStatueTimeServerEvent(data.statueTime));
 
         while (SPIN_KEY.consumeClick()) {
             if (wasStatueThisTick > 0) {
