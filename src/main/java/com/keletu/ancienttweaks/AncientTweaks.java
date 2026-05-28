@@ -1,7 +1,6 @@
 package com.keletu.ancienttweaks;
 
 import com.keletu.ancienttweaks.event.ClientEvents;
-import com.keletu.ancienttweaks.event.TanookiSpinClient;
 import com.keletu.ancienttweaks.init.*;
 import com.keletu.ancienttweaks.packet.ModNetwork;
 import com.keletu.ancienttweaks.util.ATDataGen;
@@ -36,7 +35,7 @@ public class AncientTweaks {
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             modEventBus.addListener(ClientEvents::onClientSetup);
-            modEventBus.addListener(RegisterKeyMappingsEvent.class, event -> event.register(TanookiSpinClient.SPIN_KEY));
+            modEventBus.addListener(RegisterKeyMappingsEvent.class, event -> event.register(ClientEvents.SPIN_KEY));
         }
     }
 }

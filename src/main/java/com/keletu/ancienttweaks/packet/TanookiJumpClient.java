@@ -27,6 +27,8 @@ public record TanookiJumpClient(int i) implements CustomPacketPayload {
 
 
             if (payload.i() == 2) player.setDeltaMovement(0, -1.5, 0);
+
+            if (payload.i() == 3) player.turn(300, 0);
         });
     }
 }
