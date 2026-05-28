@@ -22,7 +22,7 @@ public class TanookiSpinClient {
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.player == null || mc.player.getVehicle() != null) return;
+        if (mc.player == null || mc.player.getVehicle() != null || !TanookiEvents.hasArmorEquipped(mc.player)) return;
 
         var data = mc.player.getData(ATAttachments.DATA_TYPE);
 
@@ -40,7 +40,6 @@ public class TanookiSpinClient {
         if (data.statueTime > 0) {
             data.statueTime--;
             PacketDistributor.sendToServer(new TanookiStatuePayload(true));
-            mc.player.setDeltaMovement(0, -1.5, 0);
         }
 
         PacketDistributor.sendToServer(new TanookiStatueTimeServerEvent(data.statueTime));

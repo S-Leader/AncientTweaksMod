@@ -1,6 +1,7 @@
 package com.keletu.ancienttweaks.packet;
 
 import com.keletu.ancienttweaks.AncientTweaks;
+import com.keletu.ancienttweaks.event.TanookiEvents;
 import com.keletu.ancienttweaks.init.ATAttachments;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -25,7 +26,7 @@ public record TanookiStatuePayload(boolean isActivating) implements CustomPacket
     public static void handle(final TanookiStatuePayload payload, final IPayloadContext context) {
         context.enqueueWork(() -> {
             Player player = context.player();
-            if (player != null) {
+            if (player != null && TanookiEvents.hasArmorEquipped(player)) {
                 boolean isStatue = payload.isActivating();
                 var data = player.getData(ATAttachments.DATA_TYPE);
 
