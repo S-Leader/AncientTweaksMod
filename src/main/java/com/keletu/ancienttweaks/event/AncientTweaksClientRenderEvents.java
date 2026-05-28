@@ -51,7 +51,7 @@ public final class AncientTweaksClientRenderEvents {
         Player player = event.getEntity();
         var data = player.getData(ATAttachments.DATA_TYPE);
 
-        if (data == null || data.statueTime <= 0) {
+        if (data == null || data.statueTime <= 0 || !TanookiEvents.hasArmorEquipped(player)) {
             return;
         }
 
