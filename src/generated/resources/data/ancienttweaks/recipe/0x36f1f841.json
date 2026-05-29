@@ -1,8 +1,11 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:mod_loaded",
-      "modid": "twilightforest"
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "twilightforest"
+      }
     },
     {
       "type": "neoforge:not",
@@ -16,18 +19,19 @@
   "category": "equipment",
   "key": {
     "C": {
-      "item": "minecraft:redstone_block"
+      "item": "minecraft:diamond_block"
     },
     "M": {
-      "tag": "ancienttweaks:thunder_mat"
+      "item": "minecraft:leather"
     }
   },
   "pattern": [
+    "MCM",
     "MMM",
-    "MCM"
+    "MMM"
   ],
   "result": {
     "count": 1,
-    "id": "ancienttweaks:thunder_helmet"
+    "id": "ancienttweaks:tanooki_chest"
   }
 }

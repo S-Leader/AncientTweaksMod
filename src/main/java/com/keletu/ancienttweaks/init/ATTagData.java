@@ -32,9 +32,9 @@ public class ATTagData extends ItemTagsProvider {
         this.tag(ItemTags.DURABILITY_ENCHANTABLE).add(ATItems.tanooki_hood.get(), ATItems.tanooki_chest.get(), ATItems.tanooki_legs.get(), ATItems.tanooki_shoes.get(), ATItems.thunder_helmet.get(), ATItems.thunder_chestplate.get(), ATItems.thunder_leggings.get(), ATItems.thunder_boots.get());
         this.tag(ItemTags.VANISHING_ENCHANTABLE).add(ATItems.tanooki_hood.get(), ATItems.tanooki_chest.get(), ATItems.tanooki_legs.get(), ATItems.tanooki_shoes.get(), ATItems.thunder_helmet.get(), ATItems.thunder_chestplate.get(), ATItems.thunder_leggings.get(), ATItems.thunder_boots.get());
 
-        this.tag(ATTags.TANOOKI_MAT).addOptionalTag(ResourceLocation.fromNamespaceAndPath("twilightforest", "tanned_leather"));
-        this.tag(ATTags.TANOOKI_CORE).addOptionalTag(ResourceLocation.fromNamespaceAndPath("aether_genesis", "continuum_orb"));
-        this.tag(ATTags.THUNDER_MAT).addOptionalTag(ResourceLocation.fromNamespaceAndPath("twilightforest", "wrought_iron"));
-        this.tag(ATTags.THUNDER_CORE).addOptionalTag(ResourceLocation.fromNamespaceAndPath("aether_genesis", "storm_aercloud"));
+        this.tag(ATTags.TANOOKI_MAT).addOptional(ResourceLocation.fromNamespaceAndPath("twilightforest", "tanned_leather"));
+        this.tag(ATTags.TANOOKI_CORE).addOptional(ResourceLocation.fromNamespaceAndPath("aether_genesis", "continuum_orb"));
+        this.tag(ATTags.THUNDER_MAT).addOptional(ResourceLocation.fromNamespaceAndPath("twilightforest", "wrought_iron"));
+        this.tag(ATTags.THUNDER_CORE).addOptional(ResourceLocation.fromNamespaceAndPath("aether_genesis", "storm_aercloud"));
     }
 }

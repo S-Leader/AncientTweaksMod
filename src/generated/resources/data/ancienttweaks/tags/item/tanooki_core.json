@@ -1,7 +1,7 @@
 {
   "values": [
     {
-      "id": "#aether_genesis:continuum_orb",
+      "id": "aether_genesis:continuum_orb",
       "required": false
     }
   ]

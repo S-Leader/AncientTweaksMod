@@ -1,11 +1,8 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:mod_loaded",
-        "modid": "twilightforest"
-      }
+      "type": "neoforge:mod_loaded",
+      "modid": "twilightforest"
     },
     {
       "type": "neoforge:mod_loaded",
@@ -16,10 +13,10 @@
   "category": "equipment",
   "key": {
     "C": {
-      "tag": "ancienttweaks:thunder_core"
+      "tag": "ancienttweaks:tanooki_core"
     },
     "M": {
-      "item": "minecraft:iron_ingot"
+      "tag": "ancienttweaks:tanooki_mat"
     }
   },
   "pattern": [
@@ -28,6 +25,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "ancienttweaks:thunder_helmet"
+    "id": "ancienttweaks:tanooki_hood"
   }
 }

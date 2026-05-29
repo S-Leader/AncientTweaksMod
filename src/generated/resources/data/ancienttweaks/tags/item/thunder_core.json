@@ -1,7 +1,7 @@
 {
   "values": [
     {
-      "id": "#aether_genesis:storm_aercloud",
+      "id": "aether_genesis:storm_aercloud",
       "required": false
     }
   ]

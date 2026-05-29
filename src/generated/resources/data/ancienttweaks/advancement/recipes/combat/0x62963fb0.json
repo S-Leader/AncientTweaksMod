@@ -1,11 +1,8 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:mod_loaded",
-        "modid": "twilightforest"
-      }
+      "type": "neoforge:mod_loaded",
+      "modid": "twilightforest"
     },
     {
       "type": "neoforge:not",

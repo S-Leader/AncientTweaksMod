@@ -1,8 +1,11 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:mod_loaded",
-      "modid": "twilightforest"
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "twilightforest"
+      }
     },
     {
       "type": "neoforge:mod_loaded",
@@ -13,19 +16,18 @@
   "category": "equipment",
   "key": {
     "C": {
-      "tag": "ancienttweaks:thunder_core"
+      "tag": "ancienttweaks:tanooki_core"
     },
     "M": {
-      "tag": "ancienttweaks:thunder_mat"
+      "item": "minecraft:leather"
     }
   },
   "pattern": [
-    "MMM",
-    "MCM",
-    "M M"
+    "M M",
+    "MCM"
   ],
   "result": {
     "count": 1,
-    "id": "ancienttweaks:thunder_leggings"
+    "id": "ancienttweaks:tanooki_shoes"
   }
 }

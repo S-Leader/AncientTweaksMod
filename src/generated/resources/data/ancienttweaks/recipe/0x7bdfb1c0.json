@@ -1,8 +1,11 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:mod_loaded",
-      "modid": "twilightforest"
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "twilightforest"
+      }
     },
     {
       "type": "neoforge:mod_loaded",
@@ -16,15 +19,15 @@
       "tag": "ancienttweaks:thunder_core"
     },
     "M": {
-      "tag": "ancienttweaks:thunder_mat"
+      "item": "minecraft:iron_ingot"
     }
   },
   "pattern": [
-    "M M",
+    "MMM",
     "MCM"
   ],
   "result": {
     "count": 1,
-    "id": "ancienttweaks:thunder_boots"
+    "id": "ancienttweaks:thunder_helmet"
   }
 }

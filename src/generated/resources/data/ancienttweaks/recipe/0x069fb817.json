@@ -1,11 +1,8 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:mod_loaded",
-        "modid": "twilightforest"
-      }
+      "type": "neoforge:mod_loaded",
+      "modid": "twilightforest"
     },
     {
       "type": "neoforge:not",
@@ -19,10 +16,10 @@
   "category": "equipment",
   "key": {
     "C": {
-      "item": "minecraft:redstone_block"
+      "item": "minecraft:diamond_block"
     },
     "M": {
-      "item": "minecraft:iron_ingot"
+      "tag": "ancienttweaks:tanooki_mat"
     }
   },
   "pattern": [
@@ -32,6 +29,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "ancienttweaks:thunder_leggings"
+    "id": "ancienttweaks:tanooki_legs"
   }
 }
