@@ -26,11 +26,11 @@ public class TanookiArmor extends ArmorItem {
     public void appendHoverText(ItemStack stack, @Nullable Item.TooltipContext level, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.empty());
 
-        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor1").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GOLD));
-        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor2").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GOLD));
-        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor3").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GOLD));
-        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor4").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GOLD));
-        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor5").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GOLD));
-        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor6").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor1").withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor2").withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor3").withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor4").withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor5").withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.translatable("tooltip.ancienttweaks.tanooki_armor6").withStyle(ChatFormatting.GOLD));
     }
 }

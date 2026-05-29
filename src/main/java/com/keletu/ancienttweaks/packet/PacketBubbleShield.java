@@ -1,12 +1,13 @@
 package com.keletu.ancienttweaks.packet;
 
 import com.keletu.ancienttweaks.AncientTweaks;
-import com.keletu.ancienttweaks.baubles.soulheart.SoulHeartClientHandler;
+import com.keletu.ancienttweaks.init.ATAttachments;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record PacketBubbleShield(int hearts) implements CustomPacketPayload {
@@ -22,7 +23,8 @@ public record PacketBubbleShield(int hearts) implements CustomPacketPayload {
 
     public static void handle(final PacketBubbleShield packet, final IPayloadContext context) {
         context.enqueueWork(() -> {
-            SoulHeartClientHandler.clientPlayerHP = packet.hearts();
+            Player player = context.player();
+            player.getData(ATAttachments.DATA_SHIELD).heartCount = packet.hearts();
         });
     }
 }

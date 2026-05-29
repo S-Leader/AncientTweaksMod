@@ -1,8 +1,7 @@
 package com.keletu.ancienttweaks.baubles;
 
 import com.keletu.ancienttweaks.AncientTweaksConfig;
-import com.keletu.ancienttweaks.baubles.soulheart.SoulHeartHandler;
-import com.keletu.ancienttweaks.event.TheSpongeEvents;
+import com.keletu.ancienttweaks.event.RoverDriveEvents;
 import com.keletu.ancienttweaks.init.ATItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -45,9 +44,7 @@ public class ItemTheSponge extends Item implements ICurioItem {
         LivingEntity entity = slotContext.entity();
 
         if (entity instanceof Player player && !player.level().isClientSide) {
-            TheSpongeEvents.removeBubbleArmor(player);
-
-            SoulHeartHandler.setHP(player, Math.min(SoulHeartHandler.getMaxHP(player), SoulHeartHandler.getHP(player)));
+            RoverDriveEvents.removeBubbleArmorSponge(player);
         }
     }
 

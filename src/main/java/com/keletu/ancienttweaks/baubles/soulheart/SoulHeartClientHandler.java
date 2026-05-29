@@ -2,6 +2,7 @@ package com.keletu.ancienttweaks.baubles.soulheart;
 
 import com.keletu.ancienttweaks.AncientTweaks;
 import com.keletu.ancienttweaks.AncientTweaksConfig;
+import com.keletu.ancienttweaks.init.ATAttachments;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
@@ -12,13 +13,12 @@ public final class SoulHeartClientHandler {
 
     private static final ResourceLocation HEARTS_RESOURCE = ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "textures/misc/soul_hearts.png");
 
-    public static int clientPlayerHP = 0;
-
     private SoulHeartClientHandler() {
     }
 
     public static void renderHUD(GuiGraphics guiGraphics, Player player, ItemStack stack) {
-        int maxHearts = Math.min(clientPlayerHP, 22);
+        var data = player.getData(ATAttachments.DATA_SHIELD).heartCount;
+        int maxHearts = Math.min(data, 22);
 
         Minecraft mc = Minecraft.getInstance();
 

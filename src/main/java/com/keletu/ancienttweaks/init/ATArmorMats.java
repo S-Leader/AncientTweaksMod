@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -23,5 +24,12 @@ public class ATArmorMats {
         map.put(ArmorItem.Type.LEGGINGS, 6);
         map.put(ArmorItem.Type.CHESTPLATE, 8);
         map.put(ArmorItem.Type.HELMET, 3);
-    }), 9, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(Tags.Items.INGOTS_GOLD), List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "tanooki"))), 0.0F, 0.0F));
+    }), 9, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(ModList.get().isLoaded("twilightforest") ? ATTags.TANOOKI_MAT : Tags.Items.INGOTS_GOLD), List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "tanooki"))), 0.0F, 0.0F));
+
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> THUNDER = ARMOR_MATERIALS.register("thunder", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+        map.put(ArmorItem.Type.BOOTS, 2);
+        map.put(ArmorItem.Type.LEGGINGS, 5);
+        map.put(ArmorItem.Type.CHESTPLATE, 6);
+        map.put(ArmorItem.Type.HELMET, 2);
+    }), 9, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(ModList.get().isLoaded("aether_genesis") ? ATTags.THUNDER_MAT : Tags.Items.INGOTS_IRON), List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "thunder"))), 2, 0.0F));
 }

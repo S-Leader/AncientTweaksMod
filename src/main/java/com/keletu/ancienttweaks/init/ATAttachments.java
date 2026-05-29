@@ -2,6 +2,7 @@ package com.keletu.ancienttweaks.init;
 
 import com.keletu.ancienttweaks.AncientTweaks;
 import com.keletu.ancienttweaks.cap.HurtCounter;
+import com.keletu.ancienttweaks.cap.ShieldData;
 import com.keletu.ancienttweaks.cap.TanookiData;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -16,4 +17,6 @@ public class ATAttachments {
     public static final Supplier<AttachmentType<HurtCounter>> HURT_COUNTER = ATTACHMENT_TYPES.register("hurt_counter", () -> AttachmentType.serializable(HurtCounter::new).copyOnDeath().build());
 
     public static final Supplier<AttachmentType<TanookiData>> DATA_TYPE = ATTACHMENT_TYPES.register("tanooki_data", () -> AttachmentType.builder(TanookiData::new).build());
+
+    public static final Supplier<AttachmentType<ShieldData>> DATA_SHIELD = ATTACHMENT_TYPES.register("shield_counter", () -> AttachmentType.builder(ShieldData::new).build());
 }

@@ -3,7 +3,9 @@ package com.keletu.ancienttweaks.init;
 import com.keletu.ancienttweaks.AncientTweaks;
 import com.keletu.ancienttweaks.baubles.*;
 import static com.keletu.ancienttweaks.init.ATArmorMats.TANOOKI;
+import static com.keletu.ancienttweaks.init.ATArmorMats.THUNDER;
 import com.keletu.ancienttweaks.item.TanookiArmor;
+import com.keletu.ancienttweaks.item.ThunderArmor;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -37,5 +39,10 @@ public class ATItems {
     public static final DeferredItem<Item> tanooki_chest = ITEMS.register("tanooki_chest", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(1800).stacksTo(1).rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> tanooki_legs = ITEMS.register("tanooki_legs", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(1200).stacksTo(1).rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> tanooki_shoes = ITEMS.register("tanooki_shoes", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.BOOTS, new Item.Properties().durability(700).stacksTo(1).rarity(Rarity.EPIC)));
+
+    public static final DeferredItem<Item> thunder_helmet = ITEMS.register("thunder_helmet", () -> new ThunderArmor(THUNDER, ArmorItem.Type.HELMET, new Item.Properties().durability(900).stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> thunder_chestplate = ITEMS.register("thunder_chestplate", () -> new ThunderArmor(THUNDER, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(1800).stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> thunder_leggings = ITEMS.register("thunder_leggings", () -> new ThunderArmor(THUNDER, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(1200).stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> thunder_boots = ITEMS.register("thunder_boots", () -> new ThunderArmor(THUNDER, ArmorItem.Type.BOOTS, new Item.Properties().durability(700).stacksTo(1).rarity(Rarity.EPIC)));
 
 }

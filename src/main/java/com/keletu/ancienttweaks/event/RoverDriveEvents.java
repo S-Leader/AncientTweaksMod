@@ -2,9 +2,9 @@ package com.keletu.ancienttweaks.event;
 
 import com.keletu.ancienttweaks.AncientTweaks;
 import com.keletu.ancienttweaks.AncientTweaksConfig;
-import com.keletu.ancienttweaks.baubles.soulheart.SoulHeartHandler;
+import com.keletu.ancienttweaks.init.ATAttachments;
 import com.keletu.ancienttweaks.init.ATItems;
-import net.minecraft.nbt.CompoundTag;
+import com.keletu.ancienttweaks.packet.PacketBubbleShield;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -15,23 +15,22 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import top.theillusivec4.curios.api.CuriosApi;
 
 @EventBusSubscriber(modid = AncientTweaks.MODID)
 public final class RoverDriveEvents {
 
-    private static final String TAG_COMPOUND = AncientTweaks.MODID;
-    private static final String TAG_ROVER_DRIVE_COOLDOWN = "roverDriveCooldown";
-
     private RoverDriveEvents() {
     }
 
     @SubscribeEvent
-    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+    public static void onPlayerLogin(PlayerTickEvent.Post event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
-            SoulHeartHandler.updateClient(serverPlayer);
+            var data = serverPlayer.getData(ATAttachments.DATA_SHIELD);
+
+            PacketDistributor.sendToPlayer(serverPlayer, new PacketBubbleShield(data.heartCount));
         }
     }
 
@@ -43,39 +42,41 @@ public final class RoverDriveEvents {
             return;
         }
 
-        boolean equipped = hasRoverDrive(player) && !hasSponge(player);
+        var data = player.getData(ATAttachments.DATA_SHIELD);
+        int maxc = circulateMaxCooldown(player) * 20;
+        int maxs = circulateMaxAbsorb(player);
 
-        if (!equipped) {
+        if (data.heartCount > maxs) {
+            data.heartCount = maxs;
+        }
+        if (maxc == 0) {
             removeBubbleArmor(player);
+            removeBubbleArmorSponge(player);
             return;
+        } else {
+            if (data.cooldown < maxc && data.heartCount != maxs) {
+                data.cooldown++;
+            } else {
+                if (data.heartCount < maxs) {
+                    data.heartCount++;
+                } else {
+                    data.cooldown = 0;
+                }
+            }
         }
 
-        int hp = SoulHeartHandler.getHP(player);
+        if (data.heartCount > 0) {
+            if (hasRoverDrive(player)) {
+                applyBubbleArmor(player);
+            }
 
-        if (hp > 0) {
-            applyBubbleArmor(player);
+            if (hasSponge(player)) {
+                applyBubbleArmorSponge(player);
+            }
+
         } else {
             removeBubbleArmor(player);
-        }
-
-        if (hp <= 0 && player.tickCount % 20 == 0) {
-            int cooldown = getCooldown(player);
-
-            cooldown--;
-
-            if (cooldown <= 0) {
-                SoulHeartHandler.setHP(
-                        player,
-                        AncientTweaksConfig.CONFIG_CALAMITY.roverDriveShieldCount.get()
-                );
-
-                setCooldown(
-                        player,
-                        AncientTweaksConfig.CONFIG_CALAMITY.roverDriveShieldCooldown.get()
-                );
-            } else {
-                setCooldown(player, cooldown);
-            }
+            removeBubbleArmorSponge(player);
         }
     }
 
@@ -89,11 +90,12 @@ public final class RoverDriveEvents {
             return;
         }
 
-        if (hasRoverDrive(player) && !hasSponge(player) && SoulHeartHandler.getHP(player) <= 0) {
-            setCooldown(
-                    player,
-                    AncientTweaksConfig.CONFIG_CALAMITY.roverDriveShieldCooldown.get()
-            );
+
+        var data = player.getData(ATAttachments.DATA_SHIELD);
+        int maxc = circulateMaxCooldown(player) * 20;
+
+        if (maxc != 0) {
+            data.cooldown = 0;
         }
     }
 
@@ -116,20 +118,31 @@ public final class RoverDriveEvents {
         if (event.getNewDamage() <= 0) {
             return;
         }
+        var data = player.getData(ATAttachments.DATA_SHIELD);
 
-        if (!hasRoverDrive(player) && !hasSponge(player)) {
+        if (data.heartCount <= 0) {
             return;
         }
 
-        int damage = (int) event.getNewDamage();
+        float damage = event.getNewDamage();
 
         if (damage <= 0) {
             return;
         }
 
-        int overflow = SoulHeartHandler.removeHP(player, damage);
+        if (hasSponge(player))
+            damage *= 1 - AncientTweaksConfig.CONFIG_CALAMITY.theSpongeDamageDiscount.get().floatValue();
 
-        event.setNewDamage(overflow);
+        if (data.heartCount >= damage) {
+            data.heartCount -= damage;
+            damage = 0;
+        } else {
+            damage -= data.heartCount;
+            data.heartCount = 0;
+        }
+
+
+        event.setNewDamage(damage);
     }
 
     public static void applyBubbleArmor(Player player) {
@@ -143,11 +156,7 @@ public final class RoverDriveEvents {
             return;
         }
 
-        AttributeModifier modifier = new AttributeModifier(
-                ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "bubble_armor"),
-                AncientTweaksConfig.CONFIG_CALAMITY.roverDriveShieldArmor.get(),
-                AttributeModifier.Operation.ADD_VALUE
-        );
+        AttributeModifier modifier = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "bubble_armor"), AncientTweaksConfig.CONFIG_CALAMITY.roverDriveShieldArmor.get(), AttributeModifier.Operation.ADD_VALUE);
 
         armor.addTransientModifier(modifier);
     }
@@ -164,42 +173,80 @@ public final class RoverDriveEvents {
         }
     }
 
+
     private static boolean hasRoverDrive(Player player) {
-        return CuriosApi.getCuriosInventory(player)
-                .map(handler -> handler.findFirstCurio(ATItems.roverDrive.get()).isPresent())
-                .orElse(false);
+        return CuriosApi.getCuriosInventory(player).map(handler -> handler.findFirstCurio(ATItems.roverDrive.get()).isPresent()).orElse(false);
     }
 
     private static boolean hasSponge(Player player) {
-        return CuriosApi.getCuriosInventory(player)
-                .map(handler -> handler.findFirstCurio(ATItems.theSponge.get()).isPresent())
-                .orElse(false);
-    }
-
-    private static int getCooldown(Player player) {
-        CompoundTag tag = getModTag(player);
-
-        if (!tag.contains(TAG_ROVER_DRIVE_COOLDOWN)) {
-            tag.putInt(
-                    TAG_ROVER_DRIVE_COOLDOWN,
-                    AncientTweaksConfig.CONFIG_CALAMITY.roverDriveShieldCooldown.get()
-            );
-        }
-
-        return tag.getInt(TAG_ROVER_DRIVE_COOLDOWN);
+        return CuriosApi.getCuriosInventory(player).map(handler -> handler.findFirstCurio(ATItems.theSponge.get()).isPresent()).orElse(false);
     }
 
     private static void setCooldown(Player player, int cooldown) {
-        getModTag(player).putInt(TAG_ROVER_DRIVE_COOLDOWN, cooldown);
+        var data = player.getData(ATAttachments.DATA_SHIELD);
+        data.cooldown = cooldown;
     }
 
-    private static CompoundTag getModTag(Player player) {
-        CompoundTag persistent = player.getPersistentData();
+    public static void applyBubbleArmorSponge(Player player) {
+        AttributeInstance armor = player.getAttribute(Attributes.ARMOR);
 
-        if (!persistent.contains(TAG_COMPOUND)) {
-            persistent.put(TAG_COMPOUND, new CompoundTag());
+        if (armor == null) {
+            return;
         }
 
-        return persistent.getCompound(TAG_COMPOUND);
+        if (armor.getModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "sponge_bubble_armor")) != null) {
+            return;
+        }
+
+        AttributeModifier modifier = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "sponge_bubble_armor"), AncientTweaksConfig.CONFIG_CALAMITY.theSpongeShieldArmor.get(), AttributeModifier.Operation.ADD_VALUE);
+
+        armor.addTransientModifier(modifier);
+    }
+
+    public static void removeBubbleArmorSponge(Player player) {
+        AttributeInstance armor = player.getAttribute(Attributes.ARMOR);
+
+        if (armor == null) {
+            return;
+        }
+
+        if (armor.getModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "sponge_bubble_armor")) != null) {
+            armor.removeModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "sponge_bubble_armor"));
+        }
+    }
+
+    private static int circulateMaxCooldown(Player player) {
+        var data = player.getData(ATAttachments.DATA_SHIELD);
+        int max = 0;
+        if (hasRoverDrive(player)) {
+            max += AncientTweaksConfig.CONFIG_CALAMITY.roverDriveShieldCooldown.get();
+        }
+
+        if (ThunderEvents.hasArmorEquipped(player)) {
+            max += 7;
+        }
+
+        if (hasSponge(player)) {
+            max += AncientTweaksConfig.CONFIG_CALAMITY.theSpongeShieldCooldown.get();
+        }
+
+        return max;
+    }
+
+    private static int circulateMaxAbsorb(Player player) {
+        int max = 0;
+        if (hasRoverDrive(player)) {
+            max += AncientTweaksConfig.CONFIG_CALAMITY.roverDriveShieldCount.get();
+        }
+
+        if (ThunderEvents.hasArmorEquipped(player)) {
+            max += 8;
+        }
+
+        if (hasSponge(player)) {
+            max += AncientTweaksConfig.CONFIG_CALAMITY.theSpongeShieldCount.get();
+        }
+
+        return max;
     }
 }

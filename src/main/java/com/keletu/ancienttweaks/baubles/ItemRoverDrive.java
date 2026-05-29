@@ -1,7 +1,6 @@
 package com.keletu.ancienttweaks.baubles;
 
 import com.keletu.ancienttweaks.AncientTweaksConfig;
-import com.keletu.ancienttweaks.baubles.soulheart.SoulHeartHandler;
 import com.keletu.ancienttweaks.event.RoverDriveEvents;
 import com.keletu.ancienttweaks.init.ATItems;
 import net.minecraft.ChatFormatting;
@@ -46,11 +45,6 @@ public class ItemRoverDrive extends Item implements ICurioItem {
 
         if (entity instanceof Player player && !player.level().isClientSide) {
             RoverDriveEvents.removeBubbleArmor(player);
-
-            int hp = SoulHeartHandler.getHP(player);
-            int max = SoulHeartHandler.getMaxHP(player);
-
-            SoulHeartHandler.setHP(player, Math.min(max, hp));
         }
     }
 

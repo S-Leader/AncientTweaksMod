@@ -4,6 +4,7 @@ import com.keletu.ancienttweaks.AncientTweaks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
@@ -19,16 +20,21 @@ public class ATTagData extends ItemTagsProvider {
 
     @Override
     public void addTags(HolderLookup.Provider provider) {
-        this.tag(ItemTags.HEAD_ARMOR_ENCHANTABLE).add(ATItems.tanooki_hood.get());
-        this.tag(ItemTags.CHEST_ARMOR_ENCHANTABLE).add(ATItems.tanooki_chest.get());
-        this.tag(ItemTags.LEG_ARMOR_ENCHANTABLE).add(ATItems.tanooki_legs.get());
-        this.tag(ItemTags.FOOT_ARMOR_ENCHANTABLE).add(ATItems.tanooki_shoes.get());
-        this.tag(ItemTags.HEAD_ARMOR).add(ATItems.tanooki_hood.get());
-        this.tag(ItemTags.CHEST_ARMOR).add(ATItems.tanooki_chest.get());
-        this.tag(ItemTags.LEG_ARMOR).add(ATItems.tanooki_legs.get());
-        this.tag(ItemTags.FOOT_ARMOR).add(ATItems.tanooki_shoes.get());
+        this.tag(ItemTags.HEAD_ARMOR_ENCHANTABLE).add(ATItems.tanooki_hood.get()).add(ATItems.thunder_helmet.get());
+        this.tag(ItemTags.CHEST_ARMOR_ENCHANTABLE).add(ATItems.tanooki_chest.get()).add(ATItems.thunder_chestplate.get());
+        this.tag(ItemTags.LEG_ARMOR_ENCHANTABLE).add(ATItems.tanooki_legs.get()).add(ATItems.thunder_leggings.get());
+        this.tag(ItemTags.FOOT_ARMOR_ENCHANTABLE).add(ATItems.tanooki_shoes.get()).add(ATItems.thunder_boots.get());
+        this.tag(ItemTags.HEAD_ARMOR).add(ATItems.tanooki_hood.get()).add(ATItems.thunder_helmet.get());
+        this.tag(ItemTags.CHEST_ARMOR).add(ATItems.tanooki_chest.get()).add(ATItems.thunder_chestplate.get());
+        this.tag(ItemTags.LEG_ARMOR).add(ATItems.tanooki_legs.get()).add(ATItems.thunder_leggings.get());
+        this.tag(ItemTags.FOOT_ARMOR).add(ATItems.tanooki_shoes.get()).add(ATItems.thunder_boots.get());
         this.tag(Tags.Items.TOOLS_SHIELD).add(ATItems.GIANTSHELL.get(), ATItems.giantTurtleShell.get());
-        this.tag(ItemTags.DURABILITY_ENCHANTABLE).add(ATItems.tanooki_hood.get(), ATItems.tanooki_chest.get(), ATItems.tanooki_legs.get(), ATItems.tanooki_shoes.get());
-        this.tag(ItemTags.VANISHING_ENCHANTABLE).add(ATItems.tanooki_hood.get(), ATItems.tanooki_chest.get(), ATItems.tanooki_legs.get(), ATItems.tanooki_shoes.get());
+        this.tag(ItemTags.DURABILITY_ENCHANTABLE).add(ATItems.tanooki_hood.get(), ATItems.tanooki_chest.get(), ATItems.tanooki_legs.get(), ATItems.tanooki_shoes.get(), ATItems.thunder_helmet.get(), ATItems.thunder_chestplate.get(), ATItems.thunder_leggings.get(), ATItems.thunder_boots.get());
+        this.tag(ItemTags.VANISHING_ENCHANTABLE).add(ATItems.tanooki_hood.get(), ATItems.tanooki_chest.get(), ATItems.tanooki_legs.get(), ATItems.tanooki_shoes.get(), ATItems.thunder_helmet.get(), ATItems.thunder_chestplate.get(), ATItems.thunder_leggings.get(), ATItems.thunder_boots.get());
+
+        this.tag(ATTags.TANOOKI_MAT).addOptionalTag(ResourceLocation.fromNamespaceAndPath("twilightforest", "tanned_leather"));
+        this.tag(ATTags.TANOOKI_CORE).addOptionalTag(ResourceLocation.fromNamespaceAndPath("aether_genesis", "continuum_orb"));
+        this.tag(ATTags.THUNDER_MAT).addOptionalTag(ResourceLocation.fromNamespaceAndPath("twilightforest", "wrought_iron"));
+        this.tag(ATTags.THUNDER_CORE).addOptionalTag(ResourceLocation.fromNamespaceAndPath("aether_genesis", "storm_aercloud"));
     }
 }

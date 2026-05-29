@@ -3,6 +3,10 @@
   "item.ancienttweaks.tanooki_chest": "Tanooki Suit",
   "item.ancienttweaks.tanooki_legs": "Tanooki Pants",
   "item.ancienttweaks.tanooki_shoes": "Tanooki Shoes",
+  "item.ancienttweaks.thunder_helmet": "Thunder Helmet",
+  "item.ancienttweaks.thunder_chestplate": "Thunder Chestplate",
+  "item.ancienttweaks.thunder_leggings": "Thunder Leggings",
+  "item.ancienttweaks.thunder_boots": "Thunder Boots",
   "item.ancienttweaks.the_absorber": "The Absorber",
   "item.ancienttweaks.craw_carapace": "Craw Carapace",
   "item.ancienttweaks.depth_cell": "Depth Cell",
@@ -63,6 +67,12 @@
   "tooltip.ancienttweaks.tanooki_armor4": "smash down will ignore falling damage.",
   "tooltip.ancienttweaks.tanooki_armor5": "- You can use spin attack when using",
   "tooltip.ancienttweaks.tanooki_armor6": "ability key on ground.",
+  "tooltip.ancienttweaks.thunder_armor1": "- Gain a barrier with 8 health",
+  "tooltip.ancienttweaks.thunder_armor2": "the barrier will regenerate 7 seconds after being hit.",
+  "tooltip.ancienttweaks.thunder_armor3": "- +15% speed and +10% extra when dash",
+  "tooltip.ancienttweaks.thunder_armor4": "- +15% ranged attack damage",
+  "tooltip.ancienttweaks.thunder_armor5": "and have small chance cause extra 200% damage",
+  "tooltip.ancienttweaks.thunder_armor6": "- increase jump height",
   "key.ancienttweaks.spin": "Armor Ability",
   "key.categories.ancienttweaks": "Ancient Tweaks"
 }

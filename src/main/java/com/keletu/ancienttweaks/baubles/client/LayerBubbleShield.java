@@ -1,7 +1,7 @@
 package com.keletu.ancienttweaks.baubles.client;
 
 import com.keletu.ancienttweaks.AncientTweaks;
-import com.keletu.ancienttweaks.baubles.soulheart.SoulHeartClientHandler;
+import com.keletu.ancienttweaks.init.ATAttachments;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.PlayerModel;
@@ -25,7 +25,8 @@ public class LayerBubbleShield extends RenderLayer<AbstractClientPlayer, PlayerM
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, AbstractClientPlayer player, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (SoulHeartClientHandler.clientPlayerHP <= 0) {
+        var data = player.getData(ATAttachments.DATA_SHIELD).heartCount;
+        if (data <= 0) {
             return;
         }
 

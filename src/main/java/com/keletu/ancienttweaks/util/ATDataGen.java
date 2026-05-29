@@ -1,6 +1,7 @@
 package com.keletu.ancienttweaks.util;
 
 import com.keletu.ancienttweaks.AncientTweaks;
+import com.keletu.ancienttweaks.init.ATRecipes;
 import com.keletu.ancienttweaks.init.ATTagData;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -26,6 +27,7 @@ public class ATDataGen {
 
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new ATTagData(output, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+        generator.addProvider(event.includeServer(), new ATRecipes(output, lookupProvider));
 
     }
 }
