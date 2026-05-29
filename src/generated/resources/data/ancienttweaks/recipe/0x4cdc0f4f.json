@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "twilightforest"
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "aether_genesis"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:redstone_block"
+    },
+    "M": {
+      "tag": "ancienttweaks:thunder_mat"
+    }
+  },
+  "pattern": [
+    "M M",
+    "MCM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ancienttweaks:thunder_boots"
+  }
+}
