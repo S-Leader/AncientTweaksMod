@@ -34,7 +34,7 @@ public class ATTagData extends ItemTagsProvider {
 
         this.tag(ATTags.TANOOKI_MAT).addOptional(ResourceLocation.fromNamespaceAndPath("twilightforest", "tanned_leather"));
         this.tag(ATTags.TANOOKI_CORE).addOptional(ResourceLocation.fromNamespaceAndPath("aether_genesis", "continuum_orb"));
-        this.tag(ATTags.THUNDER_MAT).addOptional(ResourceLocation.fromNamespaceAndPath("twilightforest", "wrought_iron"));
+        this.tag(ATTags.THUNDER_MAT).addOptional(ResourceLocation.fromNamespaceAndPath("twilightforest", "wrought_iron_bar"));
         this.tag(ATTags.THUNDER_CORE).addOptional(ResourceLocation.fromNamespaceAndPath("aether_genesis", "storm_aercloud"));
     }
 }
