@@ -1,11 +1,13 @@
 package com.keletu.ancienttweaks.init;
 
+import com.keletu.ancienttweaks.AncientTweaks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -62,7 +64,10 @@ public class ATRecipes extends RecipeProvider {
         } else {
             builder.define('C', coreV);
         }
-        builder.save(output.withConditions(modCondition("twilightforest", hasTwilightForest), modCondition("aether_genesis", hasGenesis)), id(thunderRecipeId(baseId, hasTwilightForest, hasGenesis)));
+
+        builder.unlockedBy("has_netherite", has(Items.NETHERITE_INGOT));
+
+        builder.save(output.withConditions(modCondition("twilightforest", hasTwilightForest), modCondition("aether_genesis", hasGenesis)), ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, id(thunderRecipeId(baseId, hasTwilightForest, hasGenesis))));
     }
 
     private static ICondition modCondition(String modid, boolean loaded) {

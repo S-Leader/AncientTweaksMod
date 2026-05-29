@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "twilightforest"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "aether_genesis"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "tag": "ancienttweaks:tanooki_core"
+    },
+    "M": {
+      "tag": "ancienttweaks:tanooki_mat"
+    }
+  },
+  "pattern": [
+    "M M",
+    "MCM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ancienttweaks:tanooki_shoes"
+  }
+}
