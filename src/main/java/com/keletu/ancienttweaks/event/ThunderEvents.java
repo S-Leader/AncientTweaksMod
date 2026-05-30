@@ -81,7 +81,7 @@ public class ThunderEvents {
     @SubscribeEvent
     public static void onPlayerRangedAttack(LivingIncomingDamageEvent event) {
         if (event.getSource().getEntity() instanceof Player attacker && event.getAmount() < Float.MAX_VALUE / 2) {
-            if (event.getSource().getDirectEntity() != attacker && !attacker.level().isClientSide && !hasArmorEquipped(attacker)) {
+            if (event.getSource().getDirectEntity() != attacker && !attacker.level().isClientSide && hasArmorEquipped(attacker)) {
                 float amount = event.getAmount();
                 amount *= 1.5F;
                 if (attacker.getRandom().nextInt(100) < 15) {
@@ -89,6 +89,7 @@ public class ThunderEvents {
                     LightningBolt blot = new LightningBolt(EntityType.LIGHTNING_BOLT, attacker.level());
                     blot.setVisualOnly(true);
                     blot.setPos(event.getEntity().position());
+                    attacker.level().addFreshEntity(blot);
                 }
 
                 event.setAmount(amount);

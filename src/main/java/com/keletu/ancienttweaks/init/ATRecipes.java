@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.NotCondition;
-import static org.openjdk.nashorn.internal.runtime.Debug.id;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -67,7 +66,7 @@ public class ATRecipes extends RecipeProvider {
 
         builder.unlockedBy("has_netherite", has(Items.NETHERITE_INGOT));
 
-        builder.save(output.withConditions(modCondition("twilightforest", hasTwilightForest), modCondition("aether_genesis", hasGenesis)), ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, id(thunderRecipeId(baseId, hasTwilightForest, hasGenesis))));
+        builder.save(output.withConditions(modCondition("twilightforest", hasTwilightForest), modCondition("aether_genesis", hasGenesis)), ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, thunderRecipeId(baseId, hasTwilightForest, hasGenesis)));
     }
 
     private static ICondition modCondition(String modid, boolean loaded) {
@@ -76,17 +75,17 @@ public class ATRecipes extends RecipeProvider {
     }
 
     private static String thunderRecipeId(String baseId, boolean hasTwilightForest, boolean hasGenesis) {
-        StringBuilder id = new StringBuilder(baseId);
+        String id = baseId;
 
         if (hasTwilightForest) {
-            id.append("_twilightforest");
+            id += "_tf";
         }
 
         if (hasGenesis) {
-            id.append("_genesis");
+            id += "_ae";
         }
 
-        return id.toString();
+        return id;
     }
 
 }
