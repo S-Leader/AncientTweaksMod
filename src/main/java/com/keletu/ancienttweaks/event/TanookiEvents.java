@@ -86,7 +86,7 @@ public class TanookiEvents {
 
         var jumpHeight = player.getAttribute(Attributes.JUMP_STRENGTH);
         if (jumpHeight != null && jumpHeight.getModifier(STATUE_JUMP_ID) == null) {
-            movement.addPermanentModifier(new AttributeModifier(STATUE_JUMP_ID, 0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+            jumpHeight.addPermanentModifier(new AttributeModifier(STATUE_JUMP_ID, 0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         }
     }
 
