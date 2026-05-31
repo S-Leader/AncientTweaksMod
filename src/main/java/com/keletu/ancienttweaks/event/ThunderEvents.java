@@ -6,14 +6,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
@@ -31,6 +29,18 @@ public class ThunderEvents {
         if (speedAttribute != null && speedAmount != 0.0F) {
             speedAttribute.addTransientModifier(new AttributeModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "thunder_armor_movement_speed"), speedAmount, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         }
+
+        AttributeInstance jumpModifier = player.getAttribute(Attributes.JUMP_STRENGTH);
+
+        if (jumpModifier != null) {
+            jumpModifier.addTransientModifier(new AttributeModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "thunder_armor_jump_height"), 0.2F, AttributeModifier.Operation.ADD_VALUE));
+        }
+
+        AttributeInstance landModifier = player.getAttribute(Attributes.SAFE_FALL_DISTANCE);
+
+        if (landModifier != null) {
+            landModifier.addTransientModifier(new AttributeModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "thunder_armor_fall_protection"), 2.0F, AttributeModifier.Operation.ADD_VALUE));
+        }
     }
 
     private static void removeModifier(Player player) {
@@ -38,6 +48,18 @@ public class ThunderEvents {
 
         if (speedAttribute != null) {
             speedAttribute.removeModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "thunder_armor_movement_speed"));
+        }
+
+        AttributeInstance jumpModifier = player.getAttribute(Attributes.JUMP_STRENGTH);
+
+        if (jumpModifier != null) {
+            jumpModifier.removeModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "thunder_armor_jump_height"));
+        }
+
+        AttributeInstance landModifier = player.getAttribute(Attributes.SAFE_FALL_DISTANCE);
+
+        if (landModifier != null) {
+            landModifier.removeModifier(ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "thunder_armor_fall_protection"));
         }
     }
 
@@ -59,23 +81,6 @@ public class ThunderEvents {
 
         removeModifier(player);
         applyFullBuff(player);
-    }
-
-    @SubscribeEvent
-    public static void onEntityJump(LivingEvent.LivingJumpEvent event) {
-        LivingEntity living = event.getEntity();
-
-        if (!(living instanceof Player player)) {
-            return;
-        }
-
-        if (hasArmorEquipped(player)) {
-            double jumpBoost = 0.2;
-
-            player.setDeltaMovement(player.getDeltaMovement().add(0.0D, jumpBoost, 0.0D));
-
-            player.fallDistance -= (float) 2;
-        }
     }
 
     @SubscribeEvent

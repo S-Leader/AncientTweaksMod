@@ -21,6 +21,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 @EventBusSubscriber(modid = AncientTweaks.MODID)
 public class TanookiEvents {
     private static final ResourceLocation STATUE_MOVE_ID = ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "statue_move_lock");
+    private static final ResourceLocation STATUE_JUMP_ID = ResourceLocation.fromNamespaceAndPath(AncientTweaks.MODID, "statue_jump_lock");
 
     public static boolean hasArmorEquipped(Player player) {
         return player.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof TanookiArmor && player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof TanookiArmor && player.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof TanookiArmor && player.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof TanookiArmor;
@@ -82,12 +83,22 @@ public class TanookiEvents {
         if (movement != null && movement.getModifier(STATUE_MOVE_ID) == null) {
             movement.addPermanentModifier(new AttributeModifier(STATUE_MOVE_ID, -10.0D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         }
+
+        var jumpHeight = player.getAttribute(Attributes.JUMP_STRENGTH);
+        if (jumpHeight != null && jumpHeight.getModifier(STATUE_JUMP_ID) == null) {
+            movement.addPermanentModifier(new AttributeModifier(STATUE_JUMP_ID, 0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+        }
     }
 
     private static void removeStatueModifiers(Player player) {
         var movement = player.getAttribute(Attributes.MOVEMENT_SPEED);
         if (movement != null) {
             movement.removeModifier(STATUE_MOVE_ID);
+        }
+
+        var jumpHeight = player.getAttribute(Attributes.JUMP_STRENGTH);
+        if (jumpHeight != null) {
+            jumpHeight.removeModifier(STATUE_JUMP_ID);
         }
     }
 
