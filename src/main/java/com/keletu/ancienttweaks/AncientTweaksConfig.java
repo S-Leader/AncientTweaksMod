@@ -188,22 +188,23 @@ public class AncientTweaksConfig {
         public final ModConfigSpec.DoubleValue level4Damage;
         public final ModConfigSpec.DoubleValue level5Damage;
         public final ModConfigSpec.IntValue fadeTimer;
+        //public final ModConfigSpec.IntValue armorCrumblingLossCount;
 
         public ConfigArmorCrumbling(ModConfigSpec.Builder builder) {
 
             level1Damage = builder.comment("level 1 armor crumbling damage").defineInRange("Level1", 10D, 0D, 25565D);
 
-
             level2Damage = builder.comment("level 2 armor crumbling damage").defineInRange("Level2", 30, 0D, 25565D);
-
 
             level3Damage = builder.comment("level 3 armor crumbling damage").defineInRange("Level3", 50, 0D, 25565D);
 
             level4Damage = builder.comment("level 4 armor crumbling damage").defineInRange("Level4", 80, 0D, 25565D);
 
-            level5Damage = builder.comment("level 5 armor crumbling damage").defineInRange("Level5", 80, 0D, 25565D);
+            level5Damage = builder.comment("level 5 armor crumbling damage").defineInRange("Level5", 110, 0D, 25565D);
 
-            fadeTimer = builder.comment("Timer when Crumbling Effect Start Fade (Second)").defineInRange("Crumbling Decrease Timer", 5, 1, 25565);
+            fadeTimer = builder.comment("Timer when Crumbling Effect Start Fade (Second)").defineInRange("Crumbling Decrease Timer", 1, 0, 25565);
+
+            //armorCrumblingLossCount = builder.comment("Armor Crumbling will discount how much point when Crumbling Effect Start Fade)").defineInRange("Crumbling Decrease Count", 10, 1, 25565);
         }
     }
 }
