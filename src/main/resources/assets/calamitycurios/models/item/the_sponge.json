@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "calamitycurios:item/the_sponge",
+    "layer1": "calamitycurios:item/the_sponge_layer"
+  }
+}

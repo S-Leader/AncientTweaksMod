@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "calamitycurios:grand_gelatin"
+  },
+  "base": {
+    "item": "calamitycurios:baroclaw"
+  },
+  "result": {
+    "id": "calamitycurios:the_absorber"
+  },
+  "template": {
+    "item": "calamitycurios:giant_tortoise_shell"
+  }
+}

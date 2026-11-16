@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:item/generated",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "calamitycurios:item/giant_tortoise_shell_item"
+  },
+  "perspectives": {
+    "firstperson_righthand": {
+      "parent": "calamitycurios:item/tortoise_shield_blocking"
+    },
+    "firstperson_lefthand": {
+      "parent": "calamitycurios:item/tortoise_shield_blocking"
+    },
+    "thirdperson_righthand": {
+      "parent": "calamitycurios:item/tortoise_shield_blocking"
+    },
+    "thirdperson_lefthand": {
+      "parent": "calamitycurios:item/tortoise_shield_blocking"
+    },
+    "head": {
+      "parent": "calamitycurios:item/tortoise_shield_blocking"
+    },
+    "fixed": {
+      "parent": "calamitycurios:item/tortoise_shield_blocking"
+    },
+    "ground": {
+      "parent": "calamitycurios:item/tortoise_shield_blocking"
+    }
+  }
+}

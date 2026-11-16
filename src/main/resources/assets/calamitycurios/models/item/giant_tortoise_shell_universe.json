@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "calamitycurios:item/giant_tortoise_shell_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "calamitycurios:item/giant_tortoise_shell_item"
+    },
+    "ground": {
+      "parent": "calamitycurios:item/giant_tortoise_shell_item"
+    },
+    "fixed": {
+      "parent": "calamitycurios:item/giant_tortoise_shell_item"
+    }
+  }
+}

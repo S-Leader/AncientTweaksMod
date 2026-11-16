@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.keletu.calamitycurios.mixins",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "calamitycurios.refmap.json",
+  "mixins": [
+    "MixinDamageCalculations"
+  ],
+  "client": [
+    "CommunityHeartsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

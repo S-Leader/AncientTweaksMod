@@ -1,9 +1,11 @@
 {
   "replace": false,
   "values": [
-    "ancienttweaks:cleansing_jelly",
-    "ancienttweaks:vital_jelly",
-    "ancienttweaks:life_jelly",
-    "ancienttweaks:grand_gelatin"
+    "calamitycurios:cleansing_jelly",
+    "calamitycurios:vital_jelly",
+    "calamitycurios:life_jelly",
+    "calamitycurios:grand_gelatin",
+    "calamitycurios:rover_drive",
+    "calamitycurios:the_sponge"
   ]
 }

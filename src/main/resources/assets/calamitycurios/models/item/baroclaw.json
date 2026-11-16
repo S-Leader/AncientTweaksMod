@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "calamitycurios:item/baroclaw_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "calamitycurios:item/baroclaw_item"
+    },
+    "ground": {
+      "parent": "calamitycurios:item/baroclaw_item"
+    },
+    "fixed": {
+      "parent": "calamitycurios:item/baroclaw_item"
+    }
+  }
+}

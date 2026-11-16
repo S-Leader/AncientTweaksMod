@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:item/generated",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "calamitycurios:item/vital_jelly_item"
+  },
+  "perspectives": {
+    "head": {
+      "parent": "calamitycurios:item/vital_jelly_head"
+    }
+  }
+}

@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    "ancienttweaks:giant_shell",
-    "ancienttweaks:giant_tortoise_shell"
+    "calamitycurios:giant_shell",
+    "calamitycurios:giant_tortoise_shell",
+    "calamitycurios:the_absorber"
   ]
 }

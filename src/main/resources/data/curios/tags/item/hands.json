@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "ancienttweaks:craw_carapace",
-    "ancienttweaks:baroclaw"
+    "calamitycurios:craw_carapace",
+    "calamitycurios:baroclaw"
   ]
 }

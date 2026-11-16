@@ -1,0 +1,53 @@
+package com.keletu.calamitycurios.init;
+
+import com.keletu.calamitycurios.CalamityCurios;
+import com.keletu.calamitycurios.baubles.*;
+import com.keletu.calamitycurios.item.TanookiArmor;
+import com.keletu.calamitycurios.item.ThunderArmor;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import static com.keletu.calamitycurios.init.CCArmorMats.TANOOKI;
+import static com.keletu.calamitycurios.init.CCArmorMats.THUNDER;
+
+public class CCItems {
+
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(CalamityCurios.MODID);
+    public static final DeferredItem<Item> BAROCLAW = ITEMS.register("baroclaw", () -> new ItemBaroClaw(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+
+    public static final DeferredItem<Item> CRAWCARAPACE = ITEMS.register("craw_carapace", () -> new ItemCrabClaw(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> GIANTSHELL = ITEMS.register("giant_shell", () -> new ItemGiantShell(new Item.Properties().stacksTo(1).durability(999).rarity(Rarity.UNCOMMON)));
+
+    public static final DeferredItem<Item> giantTurtleShell = ITEMS.register("giant_tortoise_shell", () -> new ItemGiantTurtleShell(new Item.Properties().stacksTo(1).durability(1500).rarity(Rarity.RARE)));
+
+    public static final DeferredItem<Item> blueJelly = ITEMS.register("cleansing_jelly", () -> new ItemJelly(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+
+    public static final DeferredItem<Item> pinkJelly = ITEMS.register("life_jelly", () -> new ItemJelly(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+
+    public static final DeferredItem<Item> greenJelly = ITEMS.register("vital_jelly", () -> new ItemJelly(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+
+    public static final DeferredItem<Item> grandGelatin = ITEMS.register("grand_gelatin", () -> new ItemJelly(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+    public static final DeferredItem<Item> theAbsorber = ITEMS.register("the_absorber", () -> new ItemTheAbsorber(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
+    public static final DeferredItem<Item> roverDrive = ITEMS.register("rover_drive", () -> new ItemRoverDrive(new Item.Properties()));
+
+    public static final DeferredItem<Item> theSponge = ITEMS.register("the_sponge", () -> new ItemTheSponge(new Item.Properties()));
+
+    public static final DeferredItem<Item> theCommunity = ITEMS.register("the_community", () -> new ItemTheCommunity(new Item.Properties()));
+
+    public static final DeferredItem<Item> MECHANICAL_HEART = ITEMS.register("mechanical_heart", () -> new ItemMechanicalHeart(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+
+    public static final DeferredItem<Item> tanooki_hood = ITEMS.register("tanooki_hood", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.HELMET, new Item.Properties().durability(900).stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> tanooki_chest = ITEMS.register("tanooki_chest", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(1800).stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> tanooki_legs = ITEMS.register("tanooki_legs", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(1200).stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> tanooki_shoes = ITEMS.register("tanooki_shoes", () -> new TanookiArmor(TANOOKI, ArmorItem.Type.BOOTS, new Item.Properties().durability(700).stacksTo(1).rarity(Rarity.EPIC)));
+
+    public static final DeferredItem<Item> thunder_helmet = ITEMS.register("thunder_helmet", () -> new ThunderArmor(THUNDER, ArmorItem.Type.HELMET, new Item.Properties().durability(900).stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> thunder_chestplate = ITEMS.register("thunder_chestplate", () -> new ThunderArmor(THUNDER, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(1800).stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> thunder_leggings = ITEMS.register("thunder_leggings", () -> new ThunderArmor(THUNDER, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(1200).stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> thunder_boots = ITEMS.register("thunder_boots", () -> new ThunderArmor(THUNDER, ArmorItem.Type.BOOTS, new Item.Properties().durability(700).stacksTo(1).rarity(Rarity.EPIC)));
+
+}
